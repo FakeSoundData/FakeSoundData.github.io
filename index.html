@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeSound Demo</title>
+    <link href="./statics/bootstrap-5.2.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        #scrollToTopBtn {
+        display: none; 
+        position: fixed; 
+        bottom: 50px; 
+        right: 100px; 
+        background-color: #47c471; 
+        color: #fff; 
+        border: none;
+        font-size: 25px; 
+        border-radius: 20%; 
+        padding: 0px 21px;
+        cursor: pointer; 
+        z-index: 1;
+        }
+
+      
+        #scrollToTopBtn:hover {
+        background-color: rgb(6, 177, 57)
+        }
+        
+        header {
+            background-color: #FFEEE4;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFEEE4;
+            color: #333333;
+            margin: 0;
+            padding: 40px;
+            
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        nav {
+            background-color: #ffd0ba;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+            font-size: 20px; 
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        .image-container {
+            flex: 1 0 40%;
+            max-width: 40%;
+            box-sizing: border-box;
+            padding: 0px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .text-container {
+            flex: 1 0 66.6667%;
+            max-width: 66.6667%;
+            box-sizing: border-box;
+            padding: 10px;
+            color: rgb(11, 39, 31);
+            font-size: 18px; 
+        }
+
+        .sample_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .sample_3 {
+            flex: 0 0 33%; 
+            border: 0px solid #ddd;
+            border-radius: 20px;
+            padding: 5px;
+            margin: 5px;
+            background-color: #ffd0ba;
+            text-align: center;
+            
+        }
+        .sample_3 img {
+            max-width: 100%;
+            width:auto;       
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .sample_3 img:hover {
+            transform: scale(1.33); 
+            z-index: 1;
+        }
+        .sample_3 audio {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="Back to navigation bar"> <font size="3">Top</font> <br />&uArr;  </button>
+    <script>
+      
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("scrollToTopBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollToTopBtn").style.display = "none";
+            }
+        }
+      
+        function scrollToTop() {
+            document.body.scrollTop = 0; 
+            document.documentElement.scrollTop = 0; 
+        }
+    </script>
+    <header>
+    <div class="container">
+        <div class="image-container">
+            <img src="data/Fakesound_xl.png" alt="Image">
+        </div>
+        <div class="text-container">
+            <h2>Welcome to FakeSound demo website.</h2>
+            <p>You can see some deepfake general audio here.  </p>
+            <p>Certain semantic segments of them have been </p> 
+            <p>located by the <u>audio text grounding model</u> and regenerated using <u>generative models</u>.</p>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+    <ul>
+        <li><a href="#category1">Test-easy</a></li>  &emsp; &emsp; &emsp; &emsp; &emsp;
+        <li><a href="#category2">Test-hard</a></li> &emsp; &emsp; &emsp; &emsp; &emsp;
+        <li><a href="#category3">Test-zeroshot </a></li>
+    </ul>
+    </nav>
+
+    <div id="category1", class="border border-0 bg-light p-5 rounded mt-3 border-dark">
+        <h2>Test-easy <span class="lead">The reconstructed audio is generated by the superior performance of audioldm2, with the reconstruction range limited to 1-4 seconds. </p></h2>
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/0z97A0GYhAQ_1.72_3.88.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/2uZY7vm9kWA_3.44_4.92.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/3MidYCZfc6I_2.88_5.48.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/Al4wQEfSDGY_0.04_2.36.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/gBBMGolPi-w_4.36_6.16.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2easy/ZVUDIspSmfg_6.0_7.88.png">     
+            </div>   
+        </div>
+        
+    </div>
+
+    <div id="category2", class="border border-0 bg-light p-5 rounded mt-3 border-dark">
+        <h2>Test-hard <span class="lead">The reconstructed audio is generated by the superior performance of audioldm2, <font color="red">without</font> reconstruction range limited. </p></h2>
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/2z9eeY8b9b0_5.88_6.0.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/6oASxFj0w-8_2.56_7.56.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/etN6T66Byn4_0.04_1.64.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/ldm2hard/Sx0igMHmoK4_4.88_9.72.png">     
+            </div>   
+        </div>
+        
+            
+    
+    </div>
+
+    <div id="category3", class="border border-0 bg-light p-5 rounded mt-3 border-dark">
+        <h2>Test-zeroshot <span class="lead">The reconstructed audio is generated by the unseen model audioldm1, <font color="red">without</font> reconstruction range limited. </p></h2>
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BLLWtXIhMTQ_1.2_1.92.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/BX97GSppRT0_4.64_6.24.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/etN6T66Byn4_1.72_5.16.png">     
+            </div>   
+        </div>
+        <br />
+        
+        <div class="sample_container">
+            <div class="sample_3">
+                <p><strong>Ground truth</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12_gt.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12_gt.png">     
+            </div>
+            <div class="sample_3">
+                <p><strong>Grounded & masked</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12_masked.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12_masked.png">     
+            </div><div class="sample_3">
+                <p><strong>Regenerated</strong></p>
+                <audio controls="" preload="none"><source src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12.wav" type="audio/wav"></audio>
+                <br />
+                <img src="data/samples/zeroshot/OCWJtB_PqwA_0.08_4.12.png">     
+            </div>   
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 FakeSound
+    </footer>
+</body>
+</html>
